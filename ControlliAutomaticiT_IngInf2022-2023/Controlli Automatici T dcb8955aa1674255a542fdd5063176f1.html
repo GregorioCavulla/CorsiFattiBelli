@@ -1,677 +1,1103 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Controlli Automatici T</title><style>
-/* cspell:disable-file */
-/* webkit printing magic: print all background colors */
-html {
-	-webkit-print-color-adjust: exact;
-}
-* {
-	box-sizing: border-box;
-	-webkit-print-color-adjust: exact;
-}
-
-html,
-body {
-	margin: 0;
-	padding: 0;
-}
-@media only screen {
-	body {
-		margin: 2em auto;
-		max-width: 900px;
-		color: rgb(55, 53, 47);
-	}
-}
-
-body {
-	line-height: 1.5;
-	white-space: pre-wrap;
-}
-
-a,
-a.visited {
-	color: inherit;
-	text-decoration: underline;
-}
-
-.pdf-relative-link-path {
-	font-size: 80%;
-	color: #444;
-}
-
-h1,
-h2,
-h3 {
-	letter-spacing: -0.01em;
-	line-height: 1.2;
-	font-weight: 600;
-	margin-bottom: 0;
-}
-
-.page-title {
-	font-size: 2.5rem;
-	font-weight: 700;
-	margin-top: 0;
-	margin-bottom: 0.75em;
-}
-
-h1 {
-	font-size: 1.875rem;
-	margin-top: 1.875rem;
-}
-
-h2 {
-	font-size: 1.5rem;
-	margin-top: 1.5rem;
-}
-
-h3 {
-	font-size: 1.25rem;
-	margin-top: 1.25rem;
-}
-
-.source {
-	border: 1px solid #ddd;
-	border-radius: 3px;
-	padding: 1.5em;
-	word-break: break-all;
-}
-
-.callout {
-	border-radius: 3px;
-	padding: 1rem;
-}
-
-figure {
-	margin: 1.25em 0;
-	page-break-inside: avoid;
-}
-
-figcaption {
-	opacity: 0.5;
-	font-size: 85%;
-	margin-top: 0.5em;
-}
-
-mark {
-	background-color: transparent;
-}
-
-.indented {
-	padding-left: 1.5em;
-}
-
-hr {
-	background: transparent;
-	display: block;
-	width: 100%;
-	height: 1px;
-	visibility: visible;
-	border: none;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
-}
-
-img {
-	max-width: 100%;
-}
-
-@media only print {
-	img {
-		max-height: 100vh;
-		object-fit: contain;
-	}
-}
-
-@page {
-	margin: 1in;
-}
-
-.collection-content {
-	font-size: 0.875rem;
-}
-
-.column-list {
-	display: flex;
-	justify-content: space-between;
-}
-
-.column {
-	padding: 0 1em;
-}
-
-.column:first-child {
-	padding-left: 0;
-}
-
-.column:last-child {
-	padding-right: 0;
-}
-
-.table_of_contents-item {
-	display: block;
-	font-size: 0.875rem;
-	line-height: 1.3;
-	padding: 0.125rem;
-}
-
-.table_of_contents-indent-1 {
-	margin-left: 1.5rem;
-}
-
-.table_of_contents-indent-2 {
-	margin-left: 3rem;
-}
-
-.table_of_contents-indent-3 {
-	margin-left: 4.5rem;
-}
-
-.table_of_contents-link {
-	text-decoration: none;
-	opacity: 0.7;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
-}
-
-table,
-th,
-td {
-	border: 1px solid rgba(55, 53, 47, 0.09);
-	border-collapse: collapse;
-}
-
-table {
-	border-left: none;
-	border-right: none;
-}
-
-th,
-td {
-	font-weight: normal;
-	padding: 0.25em 0.5em;
-	line-height: 1.5;
-	min-height: 1.5em;
-	text-align: left;
-}
-
-th {
-	color: rgba(55, 53, 47, 0.6);
-}
-
-ol,
-ul {
-	margin: 0;
-	margin-block-start: 0.6em;
-	margin-block-end: 0.6em;
-}
-
-li > ol:first-child,
-li > ul:first-child {
-	margin-block-start: 0.6em;
-}
-
-ul > li {
-	list-style: disc;
-}
-
-ul.to-do-list {
-	padding-inline-start: 0;
-}
-
-ul.to-do-list > li {
-	list-style: none;
-}
-
-.to-do-children-checked {
-	text-decoration: line-through;
-	opacity: 0.375;
-}
-
-ul.toggle > li {
-	list-style: none;
-}
-
-ul {
-	padding-inline-start: 1.7em;
-}
-
-ul > li {
-	padding-left: 0.1em;
-}
-
-ol {
-	padding-inline-start: 1.6em;
-}
-
-ol > li {
-	padding-left: 0.2em;
-}
-
-.mono ol {
-	padding-inline-start: 2em;
-}
-
-.mono ol > li {
-	text-indent: -0.4em;
-}
-
-.toggle {
-	padding-inline-start: 0em;
-	list-style-type: none;
-}
-
-/* Indent toggle children */
-.toggle > li > details {
-	padding-left: 1.7em;
-}
-
-.toggle > li > details > summary {
-	margin-left: -1.1em;
-}
-
-.selected-value {
-	display: inline-block;
-	padding: 0 0.5em;
-	background: rgba(206, 205, 202, 0.5);
-	border-radius: 3px;
-	margin-right: 0.5em;
-	margin-top: 0.3em;
-	margin-bottom: 0.3em;
-	white-space: nowrap;
-}
-
-.collection-title {
-	display: inline-block;
-	margin-right: 1em;
-}
-
-.page-description {
-    margin-bottom: 2em;
-}
-
-.simple-table {
-	margin-top: 1em;
-	font-size: 0.875rem;
-	empty-cells: show;
-}
-.simple-table td {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table th {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table-header-color {
-	background: rgb(247, 246, 243);
-	color: black;
-}
-.simple-table-header {
-	font-weight: 500;
-}
-
-time {
-	opacity: 0.5;
-}
-
-.icon {
-	display: inline-block;
-	max-width: 1.2em;
-	max-height: 1.2em;
-	text-decoration: none;
-	vertical-align: text-bottom;
-	margin-right: 0.5em;
-}
-
-img.icon {
-	border-radius: 3px;
-}
-
-.user-icon {
-	width: 1.5em;
-	height: 1.5em;
-	border-radius: 100%;
-	margin-right: 0.5rem;
-}
-
-.user-icon-inner {
-	font-size: 0.8em;
-}
-
-.text-icon {
-	border: 1px solid #000;
-	text-align: center;
-}
-
-.page-cover-image {
-	display: block;
-	object-fit: cover;
-	width: 100%;
-	max-height: 30vh;
-}
-
-.page-header-icon {
-	font-size: 3rem;
-	margin-bottom: 1rem;
-}
-
-.page-header-icon-with-cover {
-	margin-top: -0.72em;
-	margin-left: 0.07em;
-}
-
-.page-header-icon img {
-	border-radius: 3px;
-}
-
-.link-to-page {
-	margin: 1em 0;
-	padding: 0;
-	border: none;
-	font-weight: 500;
-}
-
-p > .user {
-	opacity: 0.5;
-}
-
-td > .user,
-td > time {
-	white-space: nowrap;
-}
-
-input[type="checkbox"] {
-	transform: scale(1.5);
-	margin-right: 0.6em;
-	vertical-align: middle;
-}
-
-p {
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-}
-
-.image {
-	border: none;
-	margin: 1.5em 0;
-	padding: 0;
-	border-radius: 0;
-	text-align: center;
-}
-
-.code,
-code {
-	background: rgba(135, 131, 120, 0.15);
-	border-radius: 3px;
-	padding: 0.2em 0.4em;
-	border-radius: 3px;
-	font-size: 85%;
-	tab-size: 2;
-}
-
-code {
-	color: #eb5757;
-}
-
-.code {
-	padding: 1.5em 1em;
-}
-
-.code-wrap {
-	white-space: pre-wrap;
-	word-break: break-all;
-}
-
-.code > code {
-	background: none;
-	padding: 0;
-	font-size: 100%;
-	color: inherit;
-}
-
-blockquote {
-	font-size: 1.25em;
-	margin: 1em 0;
-	padding-left: 1em;
-	border-left: 3px solid rgb(55, 53, 47);
-}
-
-.bookmark {
-	text-decoration: none;
-	max-height: 8em;
-	padding: 0;
-	display: flex;
-	width: 100%;
-	align-items: stretch;
-}
-
-.bookmark-title {
-	font-size: 0.85em;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	height: 1.75em;
-	white-space: nowrap;
-}
-
-.bookmark-text {
-	display: flex;
-	flex-direction: column;
-}
-
-.bookmark-info {
-	flex: 4 1 180px;
-	padding: 12px 14px 14px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.bookmark-image {
-	width: 33%;
-	flex: 1 1 180px;
-	display: block;
-	position: relative;
-	object-fit: cover;
-	border-radius: 1px;
-}
-
-.bookmark-description {
-	color: rgba(55, 53, 47, 0.6);
-	font-size: 0.75em;
-	overflow: hidden;
-	max-height: 4.5em;
-	word-break: break-word;
-}
-
-.bookmark-href {
-	font-size: 0.75em;
-	margin-top: 0.25em;
-}
-
-.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
-.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
-.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
-.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
-.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
-.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
-.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
-.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
-.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
-.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
-.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
-.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
-.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.highlight-default {
-	color: rgba(55, 53, 47, 1);
-}
-.highlight-gray {
-	color: rgba(120, 119, 116, 1);
-	fill: rgba(120, 119, 116, 1);
-}
-.highlight-brown {
-	color: rgba(159, 107, 83, 1);
-	fill: rgba(159, 107, 83, 1);
-}
-.highlight-orange {
-	color: rgba(217, 115, 13, 1);
-	fill: rgba(217, 115, 13, 1);
-}
-.highlight-yellow {
-	color: rgba(203, 145, 47, 1);
-	fill: rgba(203, 145, 47, 1);
-}
-.highlight-teal {
-	color: rgba(68, 131, 97, 1);
-	fill: rgba(68, 131, 97, 1);
-}
-.highlight-blue {
-	color: rgba(51, 126, 169, 1);
-	fill: rgba(51, 126, 169, 1);
-}
-.highlight-purple {
-	color: rgba(144, 101, 176, 1);
-	fill: rgba(144, 101, 176, 1);
-}
-.highlight-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.highlight-red {
-	color: rgba(212, 76, 71, 1);
-	fill: rgba(212, 76, 71, 1);
-}
-.highlight-gray_background {
-	background: rgba(241, 241, 239, 1);
-}
-.highlight-brown_background {
-	background: rgba(244, 238, 238, 1);
-}
-.highlight-orange_background {
-	background: rgba(251, 236, 221, 1);
-}
-.highlight-yellow_background {
-	background: rgba(251, 243, 219, 1);
-}
-.highlight-teal_background {
-	background: rgba(237, 243, 236, 1);
-}
-.highlight-blue_background {
-	background: rgba(231, 243, 248, 1);
-}
-.highlight-purple_background {
-	background: rgba(244, 240, 247, 0.8);
-}
-.highlight-pink_background {
-	background: rgba(249, 238, 243, 0.8);
-}
-.highlight-red_background {
-	background: rgba(253, 235, 236, 1);
-}
-.block-color-default {
-	color: inherit;
-	fill: inherit;
-}
-.block-color-gray {
-	color: rgba(120, 119, 116, 1);
-	fill: rgba(120, 119, 116, 1);
-}
-.block-color-brown {
-	color: rgba(159, 107, 83, 1);
-	fill: rgba(159, 107, 83, 1);
-}
-.block-color-orange {
-	color: rgba(217, 115, 13, 1);
-	fill: rgba(217, 115, 13, 1);
-}
-.block-color-yellow {
-	color: rgba(203, 145, 47, 1);
-	fill: rgba(203, 145, 47, 1);
-}
-.block-color-teal {
-	color: rgba(68, 131, 97, 1);
-	fill: rgba(68, 131, 97, 1);
-}
-.block-color-blue {
-	color: rgba(51, 126, 169, 1);
-	fill: rgba(51, 126, 169, 1);
-}
-.block-color-purple {
-	color: rgba(144, 101, 176, 1);
-	fill: rgba(144, 101, 176, 1);
-}
-.block-color-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.block-color-red {
-	color: rgba(212, 76, 71, 1);
-	fill: rgba(212, 76, 71, 1);
-}
-.block-color-gray_background {
-	background: rgba(241, 241, 239, 1);
-}
-.block-color-brown_background {
-	background: rgba(244, 238, 238, 1);
-}
-.block-color-orange_background {
-	background: rgba(251, 236, 221, 1);
-}
-.block-color-yellow_background {
-	background: rgba(251, 243, 219, 1);
-}
-.block-color-teal_background {
-	background: rgba(237, 243, 236, 1);
-}
-.block-color-blue_background {
-	background: rgba(231, 243, 248, 1);
-}
-.block-color-purple_background {
-	background: rgba(244, 240, 247, 0.8);
-}
-.block-color-pink_background {
-	background: rgba(249, 238, 243, 0.8);
-}
-.block-color-red_background {
-	background: rgba(253, 235, 236, 1);
-}
-.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
-.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
-.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
-.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
-.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
-.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
-.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
-.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
-.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
-.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
-.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
-
-.checkbox {
-	display: inline-flex;
-	vertical-align: text-bottom;
-	width: 16;
-	height: 16;
-	background-size: 16px;
-	margin-left: 2px;
-	margin-right: 5px;
-}
-
-.checkbox-on {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-
-.checkbox-off {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-	
-</style></head><body><article id="dcb8955a-a167-4255-a542-fdd5063176f1" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/woodcuts_5.jpg" style="object-position:center 100%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">⚙️</span></div><h1 class="page-title">Controlli Automatici T</h1><p class="page-description"></p></header><div class="page-body"><ul id="7a2a1e5c-814c-4d5d-a4c1-868390c2cf10" class="toggle"><li><details open=""><summary><strong><strong><strong><strong><strong><strong>Indice</strong></strong></strong></strong></strong></strong></summary><nav id="741821f7-12d4-4337-af36-2e015d23f205" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#c1e4eb07-ae5f-43fb-8b57-e50f61aa017a">Analisi di sistemi dinamici</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#0f1069e0-f5df-4e8f-886e-5c11172c09bb"><a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Introduzione%20ai%20controlli%20automatici%208cadefae30be43669ce61a4dcdc0af7c.html">Introduzione ai controlli automatici</a> </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#c46504d9-a74c-4638-a14a-6a02b924efb3"><a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Sistemi%20dinamici%20in%20forma%20di%20stato%2045e5ffd42b024deb870ec36d5cb15c03.html">Sistemi dinamici in forma di stato</a> </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#11883a24-a725-4bc0-a8b3-92ccb63461f6"><a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Trasformata%20di%20Laplace%20e%20Funzione%20di%20Trasferimento%209a4e81020f80431182a8374e9ffd26f6.html">Trasformata di Laplace e Funzione di Trasferimento</a> </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#827ebb96-4800-403f-8e04-28784647cca8"><a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Risposta%20al%20gradino%20di%20sistemi%20elementari%2014620a14d6cf4a1aadbbd974b585f322.html">Risposta al gradino di sistemi elementari</a> </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#fe465bd6-355d-485b-ae41-6ff6640ca730"><a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Risposta%20in%20frequenza%204deedd3f24734c82a47f1c5dc1c823ac.html">Risposta in frequenza</a> </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#725712b1-b2a1-48b8-adda-5e8bc53c91a3">Sintesi di un sistema di controllo</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#5b1d28f5-148c-4d92-a191-28b392f389e0"><a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Sistemi%20di%20controllo%20stabilita%E2%80%99%20e%20prestazioni%20e7f91284001d403181770b820bcd7d9d.html">Sistemi di controllo: stabilita’ e prestazioni</a> </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#47735bd8-7d0e-42d4-a350-b607db17a078"><a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Sistemi%20di%20controllo%20progetto%20del%20regolatore%20a26689c3cbb249f3a2f1d966ac6673a2.html">Sistemi di controllo: progetto del regolatore</a> </a></div></nav><ul id="bfbeed75-98af-470f-906d-16275aa9da91" class="toggle"><li><details open=""><summary>pagine</summary><figure id="8cadefae-30be-4366-9ce6-1a4dcdc0af7c" class="link-to-page"><a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Introduzione%20ai%20controlli%20automatici%208cadefae30be43669ce61a4dcdc0af7c.html">Introduzione ai controlli automatici</a></figure><figure id="45e5ffd4-2b02-4deb-870e-c36d5cb15c03" class="link-to-page"><a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Sistemi%20dinamici%20in%20forma%20di%20stato%2045e5ffd42b024deb870ec36d5cb15c03.html">Sistemi dinamici in forma di stato</a></figure><figure id="9a4e8102-0f80-4311-82a8-374e9ffd26f6" class="link-to-page"><a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Trasformata%20di%20Laplace%20e%20Funzione%20di%20Trasferimento%209a4e81020f80431182a8374e9ffd26f6.html">Trasformata di Laplace e Funzione di Trasferimento</a></figure><figure id="14620a14-d6cf-4a1a-adbb-d974b585f322" class="link-to-page"><a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Risposta%20al%20gradino%20di%20sistemi%20elementari%2014620a14d6cf4a1aadbbd974b585f322.html">Risposta al gradino di sistemi elementari</a></figure><figure id="4deedd3f-2473-4c82-a47f-1c5dc1c823ac" class="link-to-page"><a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Risposta%20in%20frequenza%204deedd3f24734c82a47f1c5dc1c823ac.html">Risposta in frequenza</a></figure><figure id="e7f91284-001d-4031-8177-0b820bcd7d9d" class="link-to-page"><a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Sistemi%20di%20controllo%20stabilita%E2%80%99%20e%20prestazioni%20e7f91284001d403181770b820bcd7d9d.html">Sistemi di controllo: stabilita’ e prestazioni</a></figure><figure id="a26689c3-cbb2-49f3-a2f1-d966ac6673a2" class="link-to-page"><a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Sistemi%20di%20controllo%20progetto%20del%20regolatore%20a26689c3cbb249f3a2f1d966ac6673a2.html">Sistemi di controllo: progetto del regolatore</a></figure><p id="b4276567-4ec8-4f5f-83c5-c21cac21c213" class="">
-</p></details></li></ul></details></li></ul><h1 id="c1e4eb07-ae5f-43fb-8b57-e50f61aa017a" class="">Analisi di sistemi dinamici</h1><h2 id="0f1069e0-f5df-4e8f-886e-5c11172c09bb" class=""><a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Introduzione%20ai%20controlli%20automatici%208cadefae30be43669ce61a4dcdc0af7c.html">Introduzione ai controlli automatici</a> </h2><ul id="c4083001-f2ba-4b4d-8687-df2ffef813b6" class="bulleted-list"><li style="list-style-type:disc">Notazione ed elementi costitutivi</li></ul><ul id="dacb87ef-1fd3-49f3-a08a-17d8264c16ca" class="bulleted-list"><li style="list-style-type:disc">Controllo in anello aperto e chiuso</li></ul><ul id="adb1d39f-00c1-4517-8ce3-7b266fb04fde" class="bulleted-list"><li style="list-style-type:disc">Progetto di un sistema di controllo </li></ul><h2 id="c46504d9-a74c-4638-a14a-6a02b924efb3" class=""><a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Sistemi%20dinamici%20in%20forma%20di%20stato%2045e5ffd42b024deb870ec36d5cb15c03.html">Sistemi dinamici in forma di stato</a> </h2><ul id="ea5d7391-aec8-4575-bada-343f4874309d" class="bulleted-list"><li style="list-style-type:disc">Sistemi in forma di stato</li></ul><ul id="068f3c18-5ab1-48ba-871b-ecc89b91dcb3" class="bulleted-list"><li style="list-style-type:disc">Traiettoria di un sistema</li></ul><ul id="4443b300-3da0-4d9b-8132-aedf537bcd57" class="bulleted-list"><li style="list-style-type:disc">Equilibrio di un sistema</li></ul><ul id="41b0b79b-53df-4820-a36d-19781e646abc" class="bulleted-list"><li style="list-style-type:disc">Classificazione di sistemi in forma di stato</li></ul><ul id="57182cfb-0775-45e5-a5b7-5b182e947718" class="bulleted-list"><li style="list-style-type:disc">Sistemi LTI</li></ul><ul id="59b3453f-5024-4ac7-8800-5771a2aea812" class="bulleted-list"><li style="list-style-type:disc">Principio di sovrapposizione degli effetti</li></ul><ul id="3c489db7-5ffb-4633-8da1-e2c089ecd660" class="bulleted-list"><li style="list-style-type:disc">Evoluzione libera e forzata</li></ul><ul id="aa6d0f1c-011b-422a-baac-33d1f69299d8" class="bulleted-list"><li style="list-style-type:disc">Traiettorie di un sistema LTI</li></ul><ul id="d4ef455c-dea5-4b21-98e8-758ad42880d1" class="bulleted-list"><li style="list-style-type:disc">Rappresentazioni equivalenti</li></ul><ul id="e9d8f906-530a-4e03-856c-b0e52b637e05" class="bulleted-list"><li style="list-style-type:disc">Modi di un sistema LTI</li></ul><ul id="54d16c0b-980a-473e-9801-2bb3fcab8bf8" class="bulleted-list"><li style="list-style-type:disc">Stabilità interma</li></ul><ul id="2906ccc2-0acb-459d-bc26-fdc8bf9c6070" class="bulleted-list"><li style="list-style-type:disc">Linearizzazione di sistemi non lineari</li></ul><ul id="f658b7ed-757f-4c72-9552-ebac0b886afb" class="bulleted-list"><li style="list-style-type:disc">Stabilità e linearizzazione</li></ul><ul id="6ec339fc-e29f-414d-95e3-83976670a850" class="bulleted-list"><li style="list-style-type:disc">Retroazione dello stato</li></ul><ul id="b7452e55-c3f8-4747-8825-72e915318a3d" class="bulleted-list"><li style="list-style-type:disc">Controllo non lineare mediante linearizzazione</li></ul><ul id="9b42e42b-eaa2-4181-8dc7-8873d883e9f0" class="bulleted-list"><li style="list-style-type:disc">Controllo ottimo</li></ul><h2 id="11883a24-a725-4bc0-a8b3-92ccb63461f6" class=""><a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Trasformata%20di%20Laplace%20e%20Funzione%20di%20Trasferimento%209a4e81020f80431182a8374e9ffd26f6.html">Trasformata di Laplace e Funzione di Trasferimento</a> </h2><ul id="1848cc31-5c08-4985-acf4-1bf6cf15860e" class="bulleted-list"><li style="list-style-type:disc">Definizione e Osservazioni</li></ul><ul id="3e907373-2981-4d40-96ab-2f474e64d7b5" class="bulleted-list"><li style="list-style-type:disc">Antitrasformazione</li></ul><ul id="6306db28-6649-4641-a57b-b8c9785337c1" class="bulleted-list"><li style="list-style-type:disc">Proprietà</li></ul><ul id="81be5a31-f5fa-4e99-8e8b-0ac646a1b177" class="bulleted-list"><li style="list-style-type:disc">Teoremi Valore iniziale e finale</li></ul><ul id="7009e5a0-ac4d-4c76-9b49-9ca91b36c888" class="bulleted-list"><li style="list-style-type:disc">Trasformata di segnali elementari</li></ul><ul id="11c15dc4-d0f2-42f7-ab61-0d15e328f53d" class="bulleted-list"><li style="list-style-type:disc">Funzione di trasferimento</li></ul><ul id="9ccdf6fe-328f-4112-8d43-fefd2b54016f" class="bulleted-list"><li style="list-style-type:disc">Sviluppo di Heaviside</li></ul><ul id="60e9e2d6-3ead-49ce-810f-fb0314b8a94f" class="bulleted-list"><li style="list-style-type:disc">Stabilità esterna e BIBO</li></ul><h2 id="827ebb96-4800-403f-8e04-28784647cca8" class=""><a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Risposta%20al%20gradino%20di%20sistemi%20elementari%2014620a14d6cf4a1aadbbd974b585f322.html">Risposta al gradino di sistemi elementari</a> </h2><ul id="816a1471-e644-4515-87c5-cdc86f6dd584" class="bulleted-list"><li style="list-style-type:disc">Risposte di sistemi elementari</li></ul><ul id="fca95acc-d231-43f0-bddd-092b79a8f07c" class="bulleted-list"><li style="list-style-type:disc">Sistemi del primo ordine</li></ul><ul id="bdd14981-4eba-4f26-a8dd-7361fe7ac419" class="bulleted-list"><li style="list-style-type:disc">Sistemi del secondo ordine con poli complessi coniugati</li></ul><ul id="a3bfd7dd-35f0-4c36-9fb9-5ac78129f28f" class="bulleted-list"><li style="list-style-type:disc">Sistemi del secondo ordine con poli reali</li></ul><ul id="6c472761-524f-48cf-8203-251fa6af9720" class="bulleted-list"><li style="list-style-type:disc">Sistemi del primo ordine con uno zero</li></ul><ul id="93eea13c-1759-429e-8edb-32cd7fcbf71a" class="bulleted-list"><li style="list-style-type:disc">Sistemi del secondo ordine con poli reali e zero</li></ul><ul id="98bb1c47-ead0-46f9-839a-e0f3e67746a9" class="bulleted-list"><li style="list-style-type:disc">Interconnessione schemi a blocchi</li></ul><h2 id="fe465bd6-355d-485b-ae41-6ff6640ca730" class=""><a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Risposta%20in%20frequenza%204deedd3f24734c82a47f1c5dc1c823ac.html">Risposta in frequenza</a> </h2><ul id="dbba89e3-a0f4-41c6-8250-7d6fc46b1d5d" class="bulleted-list"><li style="list-style-type:disc">Risposta ad un segnale di ingresso sinusoidale</li></ul><ul id="10fa6532-bf8a-4c18-ba23-258d07070fc5" class="bulleted-list"><li style="list-style-type:disc">Risposta a segnali periodici sviluppabili in serie di Fourier</li></ul><ul id="066aa6e6-3fb7-4e81-b865-7c008264f0c5" class="bulleted-list"><li style="list-style-type:disc">Risposta a segnali dotati di trasformata di Fourier</li></ul><ul id="304f5cd4-e048-43ee-8c79-0415da814547" class="bulleted-list"><li style="list-style-type:disc">Spettro di un segnale</li></ul><ul id="c076b803-7cc6-4d8f-a13d-fb9c96e69329" class="bulleted-list"><li style="list-style-type:disc">Risposta in frequenza</li></ul><ul id="28eb3fc8-7ee1-451b-95c1-746aaa0240e1" class="bulleted-list"><li style="list-style-type:disc">Diagrammi di Bode</li></ul><ul id="0bfec542-7512-4550-8834-12cd1a7d4025" class="bulleted-list"><li style="list-style-type:disc">Risonanza</li></ul><ul id="ba618db4-8d1d-452f-b24e-68e9250fcb70" class="bulleted-list"><li style="list-style-type:disc">Azione filtrante dei sistemi dinamici</li></ul><h1 id="725712b1-b2a1-48b8-adda-5e8bc53c91a3" class="">Sintesi di un sistema di controllo</h1><h2 id="5b1d28f5-148c-4d92-a191-28b392f389e0" class=""><a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Sistemi%20di%20controllo%20stabilita%E2%80%99%20e%20prestazioni%20e7f91284001d403181770b820bcd7d9d.html">Sistemi di controllo: stabilita’ e prestazioni</a> </h2><ul id="43235cd3-b7aa-4acb-ac04-fcf07bf86ee1" class="bulleted-list"><li style="list-style-type:disc">Schema di controllo in relazione</li></ul><ul id="1b31c665-dfc6-4509-b17a-4e43f807899f" class="bulleted-list"><li style="list-style-type:disc">Disaccoppiamento frequenziale dei segnali</li></ul><ul id="cd62e4ef-b3d0-4525-835f-4dd63cac22d3" class="bulleted-list"><li style="list-style-type:disc">Requisiti di un sistema di controllo</li></ul><ul id="b1c50662-cc19-4ac4-b35a-9c63628417b2" class="bulleted-list"><li style="list-style-type:disc">Stabilità robusta del sistema retroazionato</li></ul><ul id="a94816f8-6576-4502-ad5a-cd18674ed740" class="bulleted-list"><li style="list-style-type:disc">Funzioni di sensitività</li></ul><ul id="4ab6fa87-087b-48e4-bfb5-a16dc1c5a9ab" class="bulleted-list"><li style="list-style-type:disc">Poli complessi coniugati di F(s) e margine di fase</li></ul><ul id="4e694212-c054-4195-aec0-6b1523e1d6b0" class="bulleted-list"><li style="list-style-type:disc">Analisi statica</li></ul><ul id="6ef61e55-8b86-4884-ac45-a4401ccacfb4" class="bulleted-list"><li style="list-style-type:disc">Principio del modello interno</li></ul><h2 id="47735bd8-7d0e-42d4-a350-b607db17a078" class=""><a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Sistemi%20di%20controllo%20progetto%20del%20regolatore%20a26689c3cbb249f3a2f1d966ac6673a2.html">Sistemi di controllo: progetto del regolatore</a> </h2><ul id="69ba8908-a810-43e7-b989-8656a8382521" class="bulleted-list"><li style="list-style-type:disc">Schema di controllo in retroazione</li></ul><ul id="2103a084-24d1-4ccf-9972-027ea24a9e0b" class="bulleted-list"><li style="list-style-type:disc">Sintesi del regolatore</li></ul><ul id="b4eed199-a079-43a5-a787-8c58e3f3324e" class="bulleted-list"><li style="list-style-type:disc">Controllori PID</li></ul><p id="2b70114d-4139-4824-9584-f75d46400a4a" class="">
-</p><hr id="511aaac6-5e2a-4ddd-a866-986f7c0132f7"/><p id="7220451d-9cfe-4ce8-98f6-1753c029ff89" class="">
-</p></div></article></body></html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Controlli Automatici T</title>
+    <style>
+      /* cspell:disable-file */
+      /* webkit printing magic: print all background colors */
+      html {
+        -webkit-print-color-adjust: exact;
+      }
+
+      * {
+        box-sizing: border-box;
+        -webkit-print-color-adjust: exact;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      @media only screen {
+        body {
+          margin: 2em auto;
+          max-width: 900px;
+          color: rgb(55, 53, 47);
+        }
+      }
+
+      body {
+        line-height: 1.5;
+        white-space: pre-wrap;
+      }
+
+      a,
+      a.visited {
+        color: inherit;
+        text-decoration: underline;
+      }
+
+      .pdf-relative-link-path {
+        font-size: 80%;
+        color: #444;
+      }
+
+      h1,
+      h2,
+      h3 {
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+
+      .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 0.75em;
+      }
+
+      h1 {
+        font-size: 1.875rem;
+        margin-top: 1.875rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      h3 {
+        font-size: 1.25rem;
+        margin-top: 1.25rem;
+      }
+
+      .source {
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        padding: 1.5em;
+        word-break: break-all;
+      }
+
+      .callout {
+        border-radius: 3px;
+        padding: 1rem;
+      }
+
+      figure {
+        margin: 1.25em 0;
+        page-break-inside: avoid;
+      }
+
+      figcaption {
+        opacity: 0.5;
+        font-size: 85%;
+        margin-top: 0.5em;
+      }
+
+      mark {
+        background-color: transparent;
+      }
+
+      .indented {
+        padding-left: 1.5em;
+      }
+
+      hr {
+        background: transparent;
+        display: block;
+        width: 100%;
+        height: 1px;
+        visibility: visible;
+        border: none;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      @media only print {
+        img {
+          max-height: 100vh;
+          object-fit: contain;
+        }
+      }
+
+      @page {
+        margin: 1in;
+      }
+
+      .collection-content {
+        font-size: 0.875rem;
+      }
+
+      .column-list {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .column {
+        padding: 0 1em;
+      }
+
+      .column:first-child {
+        padding-left: 0;
+      }
+
+      .column:last-child {
+        padding-right: 0;
+      }
+
+      .table_of_contents-item {
+        display: block;
+        font-size: 0.875rem;
+        line-height: 1.3;
+        padding: 0.125rem;
+      }
+
+      .table_of_contents-indent-1 {
+        margin-left: 1.5rem;
+      }
+
+      .table_of_contents-indent-2 {
+        margin-left: 3rem;
+      }
+
+      .table_of_contents-indent-3 {
+        margin-left: 4.5rem;
+      }
+
+      .table_of_contents-link {
+        text-decoration: none;
+        opacity: 0.7;
+        border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid rgba(55, 53, 47, 0.09);
+        border-collapse: collapse;
+      }
+
+      table {
+        border-left: none;
+        border-right: none;
+      }
+
+      th,
+      td {
+        font-weight: normal;
+        padding: 0.25em 0.5em;
+        line-height: 1.5;
+        min-height: 1.5em;
+        text-align: left;
+      }
+
+      th {
+        color: rgba(55, 53, 47, 0.6);
+      }
+
+      ol,
+      ul {
+        margin: 0;
+        margin-block-start: 0.6em;
+        margin-block-end: 0.6em;
+      }
+
+      li>ol:first-child,
+      li>ul:first-child {
+        margin-block-start: 0.6em;
+      }
+
+      ul>li {
+        list-style: disc;
+      }
+
+      ul.to-do-list {
+        padding-inline-start: 0;
+      }
+
+      ul.to-do-list>li {
+        list-style: none;
+      }
+
+      .to-do-children-checked {
+        text-decoration: line-through;
+        opacity: 0.375;
+      }
+
+      ul.toggle>li {
+        list-style: none;
+      }
+
+      ul {
+        padding-inline-start: 1.7em;
+      }
+
+      ul>li {
+        padding-left: 0.1em;
+      }
+
+      ol {
+        padding-inline-start: 1.6em;
+      }
+
+      ol>li {
+        padding-left: 0.2em;
+      }
+
+      .mono ol {
+        padding-inline-start: 2em;
+      }
+
+      .mono ol>li {
+        text-indent: -0.4em;
+      }
+
+      .toggle {
+        padding-inline-start: 0em;
+        list-style-type: none;
+      }
+
+      /* Indent toggle children */
+      .toggle>li>details {
+        padding-left: 1.7em;
+      }
+
+      .toggle>li>details>summary {
+        margin-left: -1.1em;
+      }
+
+      .selected-value {
+        display: inline-block;
+        padding: 0 0.5em;
+        background: rgba(206, 205, 202, 0.5);
+        border-radius: 3px;
+        margin-right: 0.5em;
+        margin-top: 0.3em;
+        margin-bottom: 0.3em;
+        white-space: nowrap;
+      }
+
+      .collection-title {
+        display: inline-block;
+        margin-right: 1em;
+      }
+
+      .page-description {
+        margin-bottom: 2em;
+      }
+
+      .simple-table {
+        margin-top: 1em;
+        font-size: 0.875rem;
+        empty-cells: show;
+      }
+
+      .simple-table td {
+        height: 29px;
+        min-width: 120px;
+      }
+
+      .simple-table th {
+        height: 29px;
+        min-width: 120px;
+      }
+
+      .simple-table-header-color {
+        background: rgb(247, 246, 243);
+        color: black;
+      }
+
+      .simple-table-header {
+        font-weight: 500;
+      }
+
+      time {
+        opacity: 0.5;
+      }
+
+      .icon {
+        display: inline-block;
+        max-width: 1.2em;
+        max-height: 1.2em;
+        text-decoration: none;
+        vertical-align: text-bottom;
+        margin-right: 0.5em;
+      }
+
+      img.icon {
+        border-radius: 3px;
+      }
+
+      .user-icon {
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 100%;
+        margin-right: 0.5rem;
+      }
+
+      .user-icon-inner {
+        font-size: 0.8em;
+      }
+
+      .text-icon {
+        border: 1px solid #000;
+        text-align: center;
+      }
+
+      .page-cover-image {
+        display: block;
+        object-fit: cover;
+        width: 100%;
+        max-height: 30vh;
+      }
+
+      .page-header-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .page-header-icon-with-cover {
+        margin-top: -0.72em;
+        margin-left: 0.07em;
+      }
+
+      .page-header-icon img {
+        border-radius: 3px;
+      }
+
+      .link-to-page {
+        margin: 1em 0;
+        padding: 0;
+        border: none;
+        font-weight: 500;
+      }
+
+      p>.user {
+        opacity: 0.5;
+      }
+
+      td>.user,
+      td>time {
+        white-space: nowrap;
+      }
+
+      input[type="checkbox"] {
+        transform: scale(1.5);
+        margin-right: 0.6em;
+        vertical-align: middle;
+      }
+
+      p {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+      }
+
+      .image {
+        border: none;
+        margin: 1.5em 0;
+        padding: 0;
+        border-radius: 0;
+        text-align: center;
+      }
+
+      .code,
+      code {
+        background: rgba(135, 131, 120, 0.15);
+        border-radius: 3px;
+        padding: 0.2em 0.4em;
+        border-radius: 3px;
+        font-size: 85%;
+        tab-size: 2;
+      }
+
+      code {
+        color: #eb5757;
+      }
+
+      .code {
+        padding: 1.5em 1em;
+      }
+
+      .code-wrap {
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+
+      .code>code {
+        background: none;
+        padding: 0;
+        font-size: 100%;
+        color: inherit;
+      }
+
+      blockquote {
+        font-size: 1.25em;
+        margin: 1em 0;
+        padding-left: 1em;
+        border-left: 3px solid rgb(55, 53, 47);
+      }
+
+      .bookmark {
+        text-decoration: none;
+        max-height: 8em;
+        padding: 0;
+        display: flex;
+        width: 100%;
+        align-items: stretch;
+      }
+
+      .bookmark-title {
+        font-size: 0.85em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 1.75em;
+        white-space: nowrap;
+      }
+
+      .bookmark-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .bookmark-info {
+        flex: 4 1 180px;
+        padding: 12px 14px 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .bookmark-image {
+        width: 33%;
+        flex: 1 1 180px;
+        display: block;
+        position: relative;
+        object-fit: cover;
+        border-radius: 1px;
+      }
+
+      .bookmark-description {
+        color: rgba(55, 53, 47, 0.6);
+        font-size: 0.75em;
+        overflow: hidden;
+        max-height: 4.5em;
+        word-break: break-word;
+      }
+
+      .bookmark-href {
+        font-size: 0.75em;
+        margin-top: 0.25em;
+      }
+
+      .sans {
+        font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+      }
+
+      .code {
+        font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace;
+      }
+
+      .serif {
+        font-family: Lyon-Text, Georgia, ui-serif, serif;
+      }
+
+      .mono {
+        font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+      }
+
+      .pdf .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP';
+      }
+
+      .pdf:lang(zh-CN) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC';
+      }
+
+      .pdf:lang(zh-TW) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC';
+      }
+
+      .pdf:lang(ko-KR) .sans {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR';
+      }
+
+      .pdf .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP';
+      }
+
+      .pdf:lang(zh-CN) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC';
+      }
+
+      .pdf:lang(zh-TW) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC';
+      }
+
+      .pdf:lang(ko-KR) .code {
+        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR';
+      }
+
+      .pdf .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP';
+      }
+
+      .pdf:lang(zh-CN) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC';
+      }
+
+      .pdf:lang(zh-TW) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC';
+      }
+
+      .pdf:lang(ko-KR) .serif {
+        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR';
+      }
+
+      .pdf .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP';
+      }
+
+      .pdf:lang(zh-CN) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC';
+      }
+
+      .pdf:lang(zh-TW) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC';
+      }
+
+      .pdf:lang(ko-KR) .mono {
+        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR';
+      }
+
+      .highlight-default {
+        color: rgba(55, 53, 47, 1);
+      }
+
+      .highlight-gray {
+        color: rgba(120, 119, 116, 1);
+        fill: rgba(120, 119, 116, 1);
+      }
+
+      .highlight-brown {
+        color: rgba(159, 107, 83, 1);
+        fill: rgba(159, 107, 83, 1);
+      }
+
+      .highlight-orange {
+        color: rgba(217, 115, 13, 1);
+        fill: rgba(217, 115, 13, 1);
+      }
+
+      .highlight-yellow {
+        color: rgba(203, 145, 47, 1);
+        fill: rgba(203, 145, 47, 1);
+      }
+
+      .highlight-teal {
+        color: rgba(68, 131, 97, 1);
+        fill: rgba(68, 131, 97, 1);
+      }
+
+      .highlight-blue {
+        color: rgba(51, 126, 169, 1);
+        fill: rgba(51, 126, 169, 1);
+      }
+
+      .highlight-purple {
+        color: rgba(144, 101, 176, 1);
+        fill: rgba(144, 101, 176, 1);
+      }
+
+      .highlight-pink {
+        color: rgba(193, 76, 138, 1);
+        fill: rgba(193, 76, 138, 1);
+      }
+
+      .highlight-red {
+        color: rgba(212, 76, 71, 1);
+        fill: rgba(212, 76, 71, 1);
+      }
+
+      .highlight-gray_background {
+        background: rgba(241, 241, 239, 1);
+      }
+
+      .highlight-brown_background {
+        background: rgba(244, 238, 238, 1);
+      }
+
+      .highlight-orange_background {
+        background: rgba(251, 236, 221, 1);
+      }
+
+      .highlight-yellow_background {
+        background: rgba(251, 243, 219, 1);
+      }
+
+      .highlight-teal_background {
+        background: rgba(237, 243, 236, 1);
+      }
+
+      .highlight-blue_background {
+        background: rgba(231, 243, 248, 1);
+      }
+
+      .highlight-purple_background {
+        background: rgba(244, 240, 247, 0.8);
+      }
+
+      .highlight-pink_background {
+        background: rgba(249, 238, 243, 0.8);
+      }
+
+      .highlight-red_background {
+        background: rgba(253, 235, 236, 1);
+      }
+
+      .block-color-default {
+        color: inherit;
+        fill: inherit;
+      }
+
+      .block-color-gray {
+        color: rgba(120, 119, 116, 1);
+        fill: rgba(120, 119, 116, 1);
+      }
+
+      .block-color-brown {
+        color: rgba(159, 107, 83, 1);
+        fill: rgba(159, 107, 83, 1);
+      }
+
+      .block-color-orange {
+        color: rgba(217, 115, 13, 1);
+        fill: rgba(217, 115, 13, 1);
+      }
+
+      .block-color-yellow {
+        color: rgba(203, 145, 47, 1);
+        fill: rgba(203, 145, 47, 1);
+      }
+
+      .block-color-teal {
+        color: rgba(68, 131, 97, 1);
+        fill: rgba(68, 131, 97, 1);
+      }
+
+      .block-color-blue {
+        color: rgba(51, 126, 169, 1);
+        fill: rgba(51, 126, 169, 1);
+      }
+
+      .block-color-purple {
+        color: rgba(144, 101, 176, 1);
+        fill: rgba(144, 101, 176, 1);
+      }
+
+      .block-color-pink {
+        color: rgba(193, 76, 138, 1);
+        fill: rgba(193, 76, 138, 1);
+      }
+
+      .block-color-red {
+        color: rgba(212, 76, 71, 1);
+        fill: rgba(212, 76, 71, 1);
+      }
+
+      .block-color-gray_background {
+        background: rgba(241, 241, 239, 1);
+      }
+
+      .block-color-brown_background {
+        background: rgba(244, 238, 238, 1);
+      }
+
+      .block-color-orange_background {
+        background: rgba(251, 236, 221, 1);
+      }
+
+      .block-color-yellow_background {
+        background: rgba(251, 243, 219, 1);
+      }
+
+      .block-color-teal_background {
+        background: rgba(237, 243, 236, 1);
+      }
+
+      .block-color-blue_background {
+        background: rgba(231, 243, 248, 1);
+      }
+
+      .block-color-purple_background {
+        background: rgba(244, 240, 247, 0.8);
+      }
+
+      .block-color-pink_background {
+        background: rgba(249, 238, 243, 0.8);
+      }
+
+      .block-color-red_background {
+        background: rgba(253, 235, 236, 1);
+      }
+
+      .select-value-color-interactiveBlue {
+        background-color: rgba(35, 131, 226, .07);
+      }
+
+      .select-value-color-pink {
+        background-color: rgba(245, 224, 233, 1);
+      }
+
+      .select-value-color-purple {
+        background-color: rgba(232, 222, 238, 1);
+      }
+
+      .select-value-color-green {
+        background-color: rgba(219, 237, 219, 1);
+      }
+
+      .select-value-color-gray {
+        background-color: rgba(227, 226, 224, 1);
+      }
+
+      .select-value-color-translucentGray {
+        background-color: rgba(255, 255, 255, 0.0375);
+      }
+
+      .select-value-color-orange {
+        background-color: rgba(250, 222, 201, 1);
+      }
+
+      .select-value-color-brown {
+        background-color: rgba(238, 224, 218, 1);
+      }
+
+      .select-value-color-red {
+        background-color: rgba(255, 226, 221, 1);
+      }
+
+      .select-value-color-yellow {
+        background-color: rgba(253, 236, 200, 1);
+      }
+
+      .select-value-color-blue {
+        background-color: rgba(211, 229, 239, 1);
+      }
+
+      .checkbox {
+        display: inline-flex;
+        vertical-align: text-bottom;
+        width: 16;
+        height: 16;
+        background-size: 16px;
+        margin-left: 2px;
+        margin-right: 5px;
+      }
+
+      .checkbox-on {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+      }
+
+      .checkbox-off {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+      }
+    </style>
+  </head>
+  <body>
+    <article id="dcb8955a-a167-4255-a542-fdd5063176f1" class="page sans">
+      <header>
+        <img class="page-cover-image" src="https://www.notion.so/images/page-cover/woodcuts_5.jpg" style="object-position:center 100%" />
+        <div class="page-header-icon page-header-icon-with-cover">
+          <span class="icon">⚙️</span>
+        </div>
+        <h1 class="page-title">Controlli Automatici T</h1>
+        <p class="page-description"></p>
+      </header>
+      <div class="page-body">
+        <ul id="7a2a1e5c-814c-4d5d-a4c1-868390c2cf10" class="toggle">
+          <li>
+            <details open="">
+              <summary>
+                <strong>
+                  <strong>
+                    <strong>
+                      <strong>
+                        <strong>
+                          <strong>Indice</strong>
+                        </strong>
+                      </strong>
+                    </strong>
+                  </strong>
+                </strong>
+              </summary>
+              <nav id="741821f7-12d4-4337-af36-2e015d23f205" class="block-color-gray table_of_contents">
+                <div class="table_of_contents-item table_of_contents-indent-0">
+                  <a class="table_of_contents-link" href="#c1e4eb07-ae5f-43fb-8b57-e50f61aa017a">Analisi di sistemi dinamici</a>
+                </div>
+                <div class="table_of_contents-item table_of_contents-indent-1">
+                  <a class="table_of_contents-link" href="#0f1069e0-f5df-4e8f-886e-5c11172c09bb">
+                    <a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Introduzione%20ai%20controlli%20automatici%208cadefae30be43669ce61a4dcdc0af7c.html">Introduzione ai controlli automatici</a>
+                  </a>
+                </div>
+                <div class="table_of_contents-item table_of_contents-indent-1">
+                  <a class="table_of_contents-link" href="#c46504d9-a74c-4638-a14a-6a02b924efb3">
+                    <a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Sistemi%20dinamici%20in%20forma%20di%20stato%2045e5ffd42b024deb870ec36d5cb15c03.html">Sistemi dinamici in forma di stato</a>
+                  </a>
+                </div>
+                <div class="table_of_contents-item table_of_contents-indent-1">
+                  <a class="table_of_contents-link" href="#11883a24-a725-4bc0-a8b3-92ccb63461f6">
+                    <a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Trasformata%20di%20Laplace%20e%20Funzione%20di%20Trasferimento%209a4e81020f80431182a8374e9ffd26f6.html">Trasformata di Laplace e Funzione di Trasferimento</a>
+                  </a>
+                </div>
+                <div class="table_of_contents-item table_of_contents-indent-1">
+                  <a class="table_of_contents-link" href="#827ebb96-4800-403f-8e04-28784647cca8">
+                    <a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Risposta%20al%20gradino%20di%20sistemi%20elementari%2014620a14d6cf4a1aadbbd974b585f322.html">Risposta al gradino di sistemi elementari</a>
+                  </a>
+                </div>
+                <div class="table_of_contents-item table_of_contents-indent-1">
+                  <a class="table_of_contents-link" href="#fe465bd6-355d-485b-ae41-6ff6640ca730">
+                    <a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Risposta%20in%20frequenza%204deedd3f24734c82a47f1c5dc1c823ac.html">Risposta in frequenza</a>
+                  </a>
+                </div>
+                <div class="table_of_contents-item table_of_contents-indent-0">
+                  <a class="table_of_contents-link" href="#725712b1-b2a1-48b8-adda-5e8bc53c91a3">Sintesi di un sistema di controllo</a>
+                </div>
+                <div class="table_of_contents-item table_of_contents-indent-1">
+                  <a class="table_of_contents-link" href="#5b1d28f5-148c-4d92-a191-28b392f389e0">
+                    <a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Sistemi%20di%20controllo%20stabilita%E2%80%99%20e%20prestazioni%20e7f91284001d403181770b820bcd7d9d.html">Sistemi di controllo: stabilita’ e prestazioni</a>
+                  </a>
+                </div>
+                <div class="table_of_contents-item table_of_contents-indent-1">
+                  <a class="table_of_contents-link" href="#47735bd8-7d0e-42d4-a350-b607db17a078">
+                    <a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Sistemi%20di%20controllo%20progetto%20del%20regolatore%20a26689c3cbb249f3a2f1d966ac6673a2.html">Sistemi di controllo: progetto del regolatore</a>
+                  </a>
+                </div>
+              </nav>
+              <ul id="bfbeed75-98af-470f-906d-16275aa9da91" class="toggle">
+                <li>
+                  <details open="">
+                    <summary>pagine</summary>
+                    <figure id="8cadefae-30be-4366-9ce6-1a4dcdc0af7c" class="link-to-page">
+                      <a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Introduzione%20ai%20controlli%20automatici%208cadefae30be43669ce61a4dcdc0af7c.html">Introduzione ai controlli automatici</a>
+                    </figure>
+                    <figure id="45e5ffd4-2b02-4deb-870e-c36d5cb15c03" class="link-to-page">
+                      <a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Sistemi%20dinamici%20in%20forma%20di%20stato%2045e5ffd42b024deb870ec36d5cb15c03.html">Sistemi dinamici in forma di stato</a>
+                    </figure>
+                    <figure id="9a4e8102-0f80-4311-82a8-374e9ffd26f6" class="link-to-page">
+                      <a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Trasformata%20di%20Laplace%20e%20Funzione%20di%20Trasferimento%209a4e81020f80431182a8374e9ffd26f6.html">Trasformata di Laplace e Funzione di Trasferimento</a>
+                    </figure>
+                    <figure id="14620a14-d6cf-4a1a-adbb-d974b585f322" class="link-to-page">
+                      <a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Risposta%20al%20gradino%20di%20sistemi%20elementari%2014620a14d6cf4a1aadbbd974b585f322.html">Risposta al gradino di sistemi elementari</a>
+                    </figure>
+                    <figure id="4deedd3f-2473-4c82-a47f-1c5dc1c823ac" class="link-to-page">
+                      <a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Risposta%20in%20frequenza%204deedd3f24734c82a47f1c5dc1c823ac.html">Risposta in frequenza</a>
+                    </figure>
+                    <figure id="e7f91284-001d-4031-8177-0b820bcd7d9d" class="link-to-page">
+                      <a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Sistemi%20di%20controllo%20stabilita%E2%80%99%20e%20prestazioni%20e7f91284001d403181770b820bcd7d9d.html">Sistemi di controllo: stabilita’ e prestazioni</a>
+                    </figure>
+                    <figure id="a26689c3-cbb2-49f3-a2f1-d966ac6673a2" class="link-to-page">
+                      <a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Sistemi%20di%20controllo%20progetto%20del%20regolatore%20a26689c3cbb249f3a2f1d966ac6673a2.html">Sistemi di controllo: progetto del regolatore</a>
+                    </figure>
+                    <p id="b4276567-4ec8-4f5f-83c5-c21cac21c213" class=""></p>
+                  </details>
+                </li>
+              </ul>
+            </details>
+          </li>
+        </ul>
+        <h1 id="c1e4eb07-ae5f-43fb-8b57-e50f61aa017a" class="">Analisi di sistemi dinamici</h1>
+        <h2 id="0f1069e0-f5df-4e8f-886e-5c11172c09bb" class="">
+          <a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Introduzione%20ai%20controlli%20automatici%208cadefae30be43669ce61a4dcdc0af7c.html">Introduzione ai controlli automatici</a>
+        </h2>
+        <ul id="c4083001-f2ba-4b4d-8687-df2ffef813b6" class="bulleted-list">
+          <li style="list-style-type:disc">Notazione ed elementi costitutivi</li>
+        </ul>
+        <ul id="dacb87ef-1fd3-49f3-a08a-17d8264c16ca" class="bulleted-list">
+          <li style="list-style-type:disc">Controllo in anello aperto e chiuso</li>
+        </ul>
+        <ul id="adb1d39f-00c1-4517-8ce3-7b266fb04fde" class="bulleted-list">
+          <li style="list-style-type:disc">Progetto di un sistema di controllo </li>
+        </ul>
+        <h2 id="c46504d9-a74c-4638-a14a-6a02b924efb3" class="">
+          <a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Sistemi%20dinamici%20in%20forma%20di%20stato%2045e5ffd42b024deb870ec36d5cb15c03.html">Sistemi dinamici in forma di stato</a>
+        </h2>
+        <ul id="ea5d7391-aec8-4575-bada-343f4874309d" class="bulleted-list">
+          <li style="list-style-type:disc">Sistemi in forma di stato</li>
+        </ul>
+        <ul id="068f3c18-5ab1-48ba-871b-ecc89b91dcb3" class="bulleted-list">
+          <li style="list-style-type:disc">Traiettoria di un sistema</li>
+        </ul>
+        <ul id="4443b300-3da0-4d9b-8132-aedf537bcd57" class="bulleted-list">
+          <li style="list-style-type:disc">Equilibrio di un sistema</li>
+        </ul>
+        <ul id="41b0b79b-53df-4820-a36d-19781e646abc" class="bulleted-list">
+          <li style="list-style-type:disc">Classificazione di sistemi in forma di stato</li>
+        </ul>
+        <ul id="57182cfb-0775-45e5-a5b7-5b182e947718" class="bulleted-list">
+          <li style="list-style-type:disc">Sistemi LTI</li>
+        </ul>
+        <ul id="59b3453f-5024-4ac7-8800-5771a2aea812" class="bulleted-list">
+          <li style="list-style-type:disc">Principio di sovrapposizione degli effetti</li>
+        </ul>
+        <ul id="3c489db7-5ffb-4633-8da1-e2c089ecd660" class="bulleted-list">
+          <li style="list-style-type:disc">Evoluzione libera e forzata</li>
+        </ul>
+        <ul id="aa6d0f1c-011b-422a-baac-33d1f69299d8" class="bulleted-list">
+          <li style="list-style-type:disc">Traiettorie di un sistema LTI</li>
+        </ul>
+        <ul id="d4ef455c-dea5-4b21-98e8-758ad42880d1" class="bulleted-list">
+          <li style="list-style-type:disc">Rappresentazioni equivalenti</li>
+        </ul>
+        <ul id="e9d8f906-530a-4e03-856c-b0e52b637e05" class="bulleted-list">
+          <li style="list-style-type:disc">Modi di un sistema LTI</li>
+        </ul>
+        <ul id="54d16c0b-980a-473e-9801-2bb3fcab8bf8" class="bulleted-list">
+          <li style="list-style-type:disc">Stabilità interma</li>
+        </ul>
+        <ul id="2906ccc2-0acb-459d-bc26-fdc8bf9c6070" class="bulleted-list">
+          <li style="list-style-type:disc">Linearizzazione di sistemi non lineari</li>
+        </ul>
+        <ul id="f658b7ed-757f-4c72-9552-ebac0b886afb" class="bulleted-list">
+          <li style="list-style-type:disc">Stabilità e linearizzazione</li>
+        </ul>
+        <ul id="6ec339fc-e29f-414d-95e3-83976670a850" class="bulleted-list">
+          <li style="list-style-type:disc">Retroazione dello stato</li>
+        </ul>
+        <ul id="b7452e55-c3f8-4747-8825-72e915318a3d" class="bulleted-list">
+          <li style="list-style-type:disc">Controllo non lineare mediante linearizzazione</li>
+        </ul>
+        <ul id="9b42e42b-eaa2-4181-8dc7-8873d883e9f0" class="bulleted-list">
+          <li style="list-style-type:disc">Controllo ottimo</li>
+        </ul>
+        <h2 id="11883a24-a725-4bc0-a8b3-92ccb63461f6" class="">
+          <a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Trasformata%20di%20Laplace%20e%20Funzione%20di%20Trasferimento%209a4e81020f80431182a8374e9ffd26f6.html">Trasformata di Laplace e Funzione di Trasferimento</a>
+        </h2>
+        <ul id="1848cc31-5c08-4985-acf4-1bf6cf15860e" class="bulleted-list">
+          <li style="list-style-type:disc">Definizione e Osservazioni</li>
+        </ul>
+        <ul id="3e907373-2981-4d40-96ab-2f474e64d7b5" class="bulleted-list">
+          <li style="list-style-type:disc">Antitrasformazione</li>
+        </ul>
+        <ul id="6306db28-6649-4641-a57b-b8c9785337c1" class="bulleted-list">
+          <li style="list-style-type:disc">Proprietà</li>
+        </ul>
+        <ul id="81be5a31-f5fa-4e99-8e8b-0ac646a1b177" class="bulleted-list">
+          <li style="list-style-type:disc">Teoremi Valore iniziale e finale</li>
+        </ul>
+        <ul id="7009e5a0-ac4d-4c76-9b49-9ca91b36c888" class="bulleted-list">
+          <li style="list-style-type:disc">Trasformata di segnali elementari</li>
+        </ul>
+        <ul id="11c15dc4-d0f2-42f7-ab61-0d15e328f53d" class="bulleted-list">
+          <li style="list-style-type:disc">Funzione di trasferimento</li>
+        </ul>
+        <ul id="9ccdf6fe-328f-4112-8d43-fefd2b54016f" class="bulleted-list">
+          <li style="list-style-type:disc">Sviluppo di Heaviside</li>
+        </ul>
+        <ul id="60e9e2d6-3ead-49ce-810f-fb0314b8a94f" class="bulleted-list">
+          <li style="list-style-type:disc">Stabilità esterna e BIBO</li>
+        </ul>
+        <h2 id="827ebb96-4800-403f-8e04-28784647cca8" class="">
+          <a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Risposta%20al%20gradino%20di%20sistemi%20elementari%2014620a14d6cf4a1aadbbd974b585f322.html">Risposta al gradino di sistemi elementari</a>
+        </h2>
+        <ul id="816a1471-e644-4515-87c5-cdc86f6dd584" class="bulleted-list">
+          <li style="list-style-type:disc">Risposte di sistemi elementari</li>
+        </ul>
+        <ul id="fca95acc-d231-43f0-bddd-092b79a8f07c" class="bulleted-list">
+          <li style="list-style-type:disc">Sistemi del primo ordine</li>
+        </ul>
+        <ul id="bdd14981-4eba-4f26-a8dd-7361fe7ac419" class="bulleted-list">
+          <li style="list-style-type:disc">Sistemi del secondo ordine con poli complessi coniugati</li>
+        </ul>
+        <ul id="a3bfd7dd-35f0-4c36-9fb9-5ac78129f28f" class="bulleted-list">
+          <li style="list-style-type:disc">Sistemi del secondo ordine con poli reali</li>
+        </ul>
+        <ul id="6c472761-524f-48cf-8203-251fa6af9720" class="bulleted-list">
+          <li style="list-style-type:disc">Sistemi del primo ordine con uno zero</li>
+        </ul>
+        <ul id="93eea13c-1759-429e-8edb-32cd7fcbf71a" class="bulleted-list">
+          <li style="list-style-type:disc">Sistemi del secondo ordine con poli reali e zero</li>
+        </ul>
+        <ul id="98bb1c47-ead0-46f9-839a-e0f3e67746a9" class="bulleted-list">
+          <li style="list-style-type:disc">Interconnessione schemi a blocchi</li>
+        </ul>
+        <h2 id="fe465bd6-355d-485b-ae41-6ff6640ca730" class="">
+          <a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Risposta%20in%20frequenza%204deedd3f24734c82a47f1c5dc1c823ac.html">Risposta in frequenza</a>
+        </h2>
+        <ul id="dbba89e3-a0f4-41c6-8250-7d6fc46b1d5d" class="bulleted-list">
+          <li style="list-style-type:disc">Risposta ad un segnale di ingresso sinusoidale</li>
+        </ul>
+        <ul id="10fa6532-bf8a-4c18-ba23-258d07070fc5" class="bulleted-list">
+          <li style="list-style-type:disc">Risposta a segnali periodici sviluppabili in serie di Fourier</li>
+        </ul>
+        <ul id="066aa6e6-3fb7-4e81-b865-7c008264f0c5" class="bulleted-list">
+          <li style="list-style-type:disc">Risposta a segnali dotati di trasformata di Fourier</li>
+        </ul>
+        <ul id="304f5cd4-e048-43ee-8c79-0415da814547" class="bulleted-list">
+          <li style="list-style-type:disc">Spettro di un segnale</li>
+        </ul>
+        <ul id="c076b803-7cc6-4d8f-a13d-fb9c96e69329" class="bulleted-list">
+          <li style="list-style-type:disc">Risposta in frequenza</li>
+        </ul>
+        <ul id="28eb3fc8-7ee1-451b-95c1-746aaa0240e1" class="bulleted-list">
+          <li style="list-style-type:disc">Diagrammi di Bode</li>
+        </ul>
+        <ul id="0bfec542-7512-4550-8834-12cd1a7d4025" class="bulleted-list">
+          <li style="list-style-type:disc">Risonanza</li>
+        </ul>
+        <ul id="ba618db4-8d1d-452f-b24e-68e9250fcb70" class="bulleted-list">
+          <li style="list-style-type:disc">Azione filtrante dei sistemi dinamici</li>
+        </ul>
+        <h1 id="725712b1-b2a1-48b8-adda-5e8bc53c91a3" class="">Sintesi di un sistema di controllo</h1>
+        <h2 id="5b1d28f5-148c-4d92-a191-28b392f389e0" class="">
+          <a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Sistemi%20di%20controllo%20stabilita%E2%80%99%20e%20prestazioni%20e7f91284001d403181770b820bcd7d9d.html">Sistemi di controllo: stabilita’ e prestazioni</a>
+        </h2>
+        <ul id="43235cd3-b7aa-4acb-ac04-fcf07bf86ee1" class="bulleted-list">
+          <li style="list-style-type:disc">Schema di controllo in relazione</li>
+        </ul>
+        <ul id="1b31c665-dfc6-4509-b17a-4e43f807899f" class="bulleted-list">
+          <li style="list-style-type:disc">Disaccoppiamento frequenziale dei segnali</li>
+        </ul>
+        <ul id="cd62e4ef-b3d0-4525-835f-4dd63cac22d3" class="bulleted-list">
+          <li style="list-style-type:disc">Requisiti di un sistema di controllo</li>
+        </ul>
+        <ul id="b1c50662-cc19-4ac4-b35a-9c63628417b2" class="bulleted-list">
+          <li style="list-style-type:disc">Stabilità robusta del sistema retroazionato</li>
+        </ul>
+        <ul id="a94816f8-6576-4502-ad5a-cd18674ed740" class="bulleted-list">
+          <li style="list-style-type:disc">Funzioni di sensitività</li>
+        </ul>
+        <ul id="4ab6fa87-087b-48e4-bfb5-a16dc1c5a9ab" class="bulleted-list">
+          <li style="list-style-type:disc">Poli complessi coniugati di F(s) e margine di fase</li>
+        </ul>
+        <ul id="4e694212-c054-4195-aec0-6b1523e1d6b0" class="bulleted-list">
+          <li style="list-style-type:disc">Analisi statica</li>
+        </ul>
+        <ul id="6ef61e55-8b86-4884-ac45-a4401ccacfb4" class="bulleted-list">
+          <li style="list-style-type:disc">Principio del modello interno</li>
+        </ul>
+        <h2 id="47735bd8-7d0e-42d4-a350-b607db17a078" class="">
+          <a href="Controlli%20Automatici%20T%20dcb8955aa1674255a542fdd5063176f1/Sistemi%20di%20controllo%20progetto%20del%20regolatore%20a26689c3cbb249f3a2f1d966ac6673a2.html">Sistemi di controllo: progetto del regolatore</a>
+        </h2>
+        <ul id="69ba8908-a810-43e7-b989-8656a8382521" class="bulleted-list">
+          <li style="list-style-type:disc">Schema di controllo in retroazione</li>
+        </ul>
+        <ul id="2103a084-24d1-4ccf-9972-027ea24a9e0b" class="bulleted-list">
+          <li style="list-style-type:disc">Sintesi del regolatore</li>
+        </ul>
+        <ul id="b4eed199-a079-43a5-a787-8c58e3f3324e" class="bulleted-list">
+          <li style="list-style-type:disc">Controllori PID</li>
+        </ul>
+        <p id="2b70114d-4139-4824-9584-f75d46400a4a" class=""></p>
+        <hr id="511aaac6-5e2a-4ddd-a866-986f7c0132f7" />
+        <p id="7220451d-9cfe-4ce8-98f6-1753c029ff89" class=""></p>
+      </div>
+    </article>
+  </body>
+</html>
