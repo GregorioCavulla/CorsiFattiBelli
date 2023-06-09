@@ -42,5 +42,3 @@ Email: g.cavulla@gmail.com
 Un ringraziamento speciale a https://www.notion.so/product, una piattaforma basata sul web che ho utilizzato per prendere questi appunti. Consiglio vivamente di esplorare tutte le potenzialità di questo software.
 
 Se stai utilizzando i contenuti di questo repository,considera di metterlo tra i tuoi "Watch" o di mettere una "Star" per aiutare a tener traccia di quante persone lo utilizzano.
-
-GregorioCavulla - CorsiFattiBelli stars - CorsiFattiBelli
