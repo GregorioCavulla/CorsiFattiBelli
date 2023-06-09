@@ -25,5 +25,3 @@ If you have any questions, doubts, or suggestions, please don't hesitate to cont
 We would like to express our heartfelt thanks to Notion (https://www.notion.so/product), an amazing web-based platform that enabled us to create and organize these notes efficiently. We highly recommend exploring all the potential of this software, as we are confident it can improve your workflow as well.
 
 If you are using the content from this repository, we kindly ask you to consider giving it a star or watching it. This will help us keep track of how many users are benefiting from this resource and will encourage us to continue sharing well-formatted lecture notes like these.
-
-GregorioCavulla - CorsiFattiBelli stars - CorsiFattiBelli
