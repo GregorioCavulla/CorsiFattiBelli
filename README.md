@@ -21,12 +21,12 @@ Per visualizzare gli appunti, è sufficiente scaricare il file /ControlliAutomat
 ## Contribuzione
 
 Se desideri contribuire a questo repository, sei libero di farlo! Basta utilizzare Notion (i dettagli sono riportati di seguito) ed esportare le pagine create in formato HTML. Successivamente, puoi eseguire il push delle tue conoscenze nel repository tramite una fork.
-
+<!--
 ## Struttura del progetto
 
 Spiega la struttura principale del progetto e i suoi componenti. Descrivi le directory, i file e il loro scopo.
 
-<!--
+
 ## Licenza
 
 Indica la licenza sotto cui è rilasciato il progetto. Fornisci un link al file di licenza se presente nel repository.
